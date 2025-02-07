@@ -71,7 +71,7 @@ const App = () => {
     });
   
     socket.on('gameWin', () => {
-      setGameMessage("🎉 All players reached the final level! You win! 🎉");
+      setGameMessage("Network down? Head to the Network Room to get it back online!");
   
       setTimeout(() => {
         setGameMessage('');
