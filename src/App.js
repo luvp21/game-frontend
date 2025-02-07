@@ -25,7 +25,15 @@ const App = () => {
   const timerIntervalRef = useRef(null);
   const gridSize = 9;
   const timerDuration = 300;
- 
+
+  const showMessage = (message) => {
+    alert(message); // You can replace this with a modal or a UI update
+  };
+  
+  const disableGameActions = () => {
+    setInputAllowed(false); // This will prevent users from clicking boxes
+  };  
+
   useEffect(() => {
     if (gameActive && sequence.length === 0) {
       nextLevel();
