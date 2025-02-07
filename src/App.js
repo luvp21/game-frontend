@@ -2,7 +2,9 @@ import React, { useState, useEffect, useRef } from "react";
 import io from 'socket.io-client';
 import "./App.css";
 
-const socket = io('https://game-backend-production-efdf.up.railway.app/');
+const socket = io('https://game-backend-production-efdf.up.railway.app', {
+  transports: ['websocket', 'polling']
+});
 
 const App = () => {
   const [sequence, setSequence] = useState([]);
@@ -55,6 +57,11 @@ const App = () => {
       alert("Game restarted! Another player made a mistake.");
     });
 
+    socket.on('waitingForOthers', () => {
+      showMessage("Waiting for other players to reach the final level...");
+      disableGameActions();
+    });
+  
     socket.on('gameWin', () => {
       alert("All players reached level 5! You win!");
       resetGame();
