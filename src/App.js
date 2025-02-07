@@ -25,15 +25,7 @@ const App = () => {
 
   const timerIntervalRef = useRef(null);
   const gridSize = 9;
-  const timerDuration = 300;
-
-  const showMessage = (message) => {
-    alert(message); // You can replace this with a modal or a UI update
-  };
-  
-  const disableGameActions = () => {
-    setInputAllowed(false); // This will prevent users from clicking boxes
-  };  
+  const timerDuration = 300;  
 
   useEffect(() => {
     if (gameActive && sequence.length === 0) {
@@ -178,7 +170,7 @@ const App = () => {
         setLevel(newLevel);
         socket.emit('levelUp', roomId, newLevel);
         // If this player finishes the final level, notify the server
-        if (newLevel > 3) {  // Assuming level 10 is the final level
+        if (newLevel > 1) {  // Assuming level 10 is the final level
           socket.emit('playerFinished', roomId);
         } else {
           nextLevel();
