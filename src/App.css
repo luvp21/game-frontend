@@ -193,9 +193,17 @@ h1 {
   color: white;
   padding: 20px 30px;
   border-radius: 10px;
-  font-size: 24px;
+  font-size: 5vw;  
   text-align: center;
   z-index: 1000;
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+  max-width: 80%;
+  width: fit-content;
 }
 
+@media (max-width: 600px) {
+  .game-message {
+    font-size: 6vw;  
+    padding: 15px 20px; 
+  }
+}
