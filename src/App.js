@@ -169,8 +169,10 @@ const App = () => {
         const newLevel = level + 1;
         setLevel(newLevel);
         socket.emit('levelUp', roomId, newLevel);
-        // If this player finishes the final level, notify the server
-        if (newLevel > 1) {  // Assuming level 10 is the final level
+        
+        // max level
+        
+        if (newLevel > 10) {  
           socket.emit('playerFinished', roomId);
         } else {
           nextLevel();
