@@ -63,7 +63,7 @@ const App = () => {
     });
   
     socket.on('gameWin', () => {
-      setGameMessage("Network down? Head to the Network Room to get it back online!");
+      setGameMessage("Connection Error! Troubleshoot it in the Network Room");
   
       setTimeout(() => {
         setGameMessage('');
