@@ -21,6 +21,7 @@ const App = () => {
   const [players, setPlayers] = useState([]);
   const [joinedRoom, setJoinedRoom] = useState(false);
   const [myPlayerId, setMyPlayerId] = useState('');
+  const [gameMessage, setGameMessage] = useState('');
 
   const timerIntervalRef = useRef(null);
   const gridSize = 9;
@@ -66,13 +67,16 @@ const App = () => {
     });
 
     socket.on('waitingForOthers', () => {
-      showMessage("Waiting for other players to reach the final level...");
-      disableGameActions();
+      setGameMessage("Waiting for other players to reach the final level...");
     });
   
     socket.on('gameWin', () => {
-      alert("All players reached level 5! You win!");
-      resetGame();
+      setGameMessage("🎉 All players reached the final level! You win! 🎉");
+  
+      setTimeout(() => {
+        setGameMessage('');
+        resetGame();
+      }, 60000); 
     });
 
     return () => {
@@ -80,6 +84,7 @@ const App = () => {
       socket.off('gameStart');
       socket.off('restartGame');
       socket.off('gameWin');
+      socket.off('waitingForOthers');
     };
   }, []);
 
@@ -243,6 +248,11 @@ const App = () => {
             className={`timer-bar ${isTimerActive ? "active" : ""}`}
             style={{ width: `${timerWidth}px` }}
           />
+          {gameMessage && (
+            <div className="game-message">
+              {gameMessage}
+            </div>
+          )}
         </>
       )}
     </div>
