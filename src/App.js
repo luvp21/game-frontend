@@ -172,7 +172,7 @@ const App = () => {
         
         // max level
         
-        if (newLevel > 3) {  
+        if (newLevel > 10) {  
           socket.emit('playerFinished', roomId);
         } else {
           nextLevel();
