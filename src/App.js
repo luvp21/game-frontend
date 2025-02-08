@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import io from 'socket.io-client';
 import "./App.css";
 
-const socket = io('https://game-backend-production-efdf.up.railway.app', {
+const socket = io('https://game-backend-cw2j.onrender.com/', {
   transports: ['websocket', 'polling']
 });
 
